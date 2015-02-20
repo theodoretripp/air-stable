@@ -77,3 +77,11 @@ relevant documentation, and providing commentary in the commit messages
 can-i-eat-here is intended for reference. Do not copy paste. Typing helps you
 remember and forces you to think about every single bit of syntax. **Every time
 a programmer copy pastes a kitten cries. Don't make the kitten cry.**
+
+## Running The Software
+
+bundle install --without production
+cp .env.example .env
+???rerun -c rackup (not sure if this will work on cloud9)
+rerun -c "ruby air-stable.rb -o $IP -p $PORT" (this is works on cloud9)
+Open it in your browser
