@@ -14,10 +14,10 @@ class User
   property :id, Serial
   property :name, String
   property :email, String
-  property :password, String
+  property :password, Text
 
   def password=(password)
-    self.attribute_set(:password, BCrypt::Password.creat(password))
+    self.attribute_set(:password, BCrypt::Password.create(password))
   end
 
   def password
