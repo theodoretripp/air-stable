@@ -1,6 +1,8 @@
 require 'sinatra'
 require_relative 'models'
 
+enable :sessions
+
 get "/" do
   erb :home
 end
@@ -19,3 +21,27 @@ post "/users" do
         erb :new_user
     end
 end
+
+get "/sessions/new" do
+    @login_attempt = User.new
+    erb :new_session
+end
+
+post "/sessions" do
+    @login_attempt = User.first({ :email => params[:user]["email"] })
+
+    if @login_attempt && @login_attempt.password == params[:user]["password"]
+
+        session[:current_user] = @login_attempt.id
+
+        redirect "/"
+    else
+        @login_attempt = User.new({ :email => params["user"]["email"] })
+        @login_attempt.errors.add(:password, "Cloudn't find a user with that email/password combination")
+
+        erb :new_session
+    end
+end
+
+
+
