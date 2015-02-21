@@ -16,7 +16,7 @@ class User
   property :email, String,  { :required => true,
                               :unique => true,
                               :format => :email_address }
-  property :password, String
+  property :password, Text
 
   def password=(password)
     self.attribute_set(:password, BCrypt::Password.create(password))

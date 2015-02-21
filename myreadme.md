@@ -3,6 +3,7 @@ This is my readme. More of a scratch pad for informal todo list.
 ## Progress adapting the can-i-eat-here example to air-stable:
 :heavy check: 2/21 "Handle Password Errors more gracefully"
 :heavy check: 2/21 Add Validatons for Name and Email Address
+:heavy check: 2/21 Make form fields proceed down the page, instead of across it.
 
 ## Functional Requirements
 
