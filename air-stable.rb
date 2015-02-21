@@ -16,7 +16,6 @@ post "/users" do
     if @user.saved?
         redirect "/"
     else
-        raise @user.errors.inspect
-        # temporary - error handling coming soon.
+        erb :new_user
     end
 end
