@@ -20,11 +20,23 @@ This is my readme. More of a scratch pad for informal todo list.
 
 ## Functional Requirements
 
-
+1. Change stable to stall
 1. Guest may log in
 
 
 1. `User` may create a pending `RentalRequest` for a `Stall`
+    view
+      > change stable list to include link (Rent this?)
+      > new_rental_request.erb will have form with hidden inputs for the `Stall`
+        details (similar to past examples) and `User` details
+      > hidden input for "status" => pending or approved or denied
+      > new input for open comment (worry about date, price later)
+    model
+      DONE > add to `Rental_Request` class "status" property type string (pending or approved or denied)
+      DONE > add to `Rental_Request` class "rental_date" property type date
+
+
+
 1. `Stall` owner may see pending `RentalRequest`s
 1. `RentalRequest`s requester may see pending `RentalRequest`s
 1. `Stall` owner may deny `RentalRequest`s for their `Stall`

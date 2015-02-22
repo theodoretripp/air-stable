@@ -5,9 +5,9 @@
   <p>Or <a href="/session/new">Log in!</a></p>
 <% end %>
 
-<% @stables.each do |stable| %>
-  <article class="stable">
-    <h3><%= stable.name %></h3>
-    <p><%= stable.address %></p>
+<% @stalls.each do |stall| %>
+  <article class="stall">
+    <h3><%= stall.name %></h3>
+    <p><%= stall.address %></p>
   </article>
 <% end %>

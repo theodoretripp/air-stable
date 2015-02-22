@@ -27,7 +27,7 @@ helpers do
 end
 
 get "/" do
-  @stables = Stable.all
+  @stalls = Stall.all
   erb :home
 end
 
@@ -46,19 +46,35 @@ post "/users" do
     end
 end
 
-get "/stables/new" do
+get "/stalls/new" do
   ensure_logged_in!
-  @stable = current_user.stables.new
-  erb :new_stable
+  @stall = current_user.stalls.new
+  erb :new_stall
 end
 
-post "/stables" do
+post "/stalls" do
   ensure_logged_in!
-  @stable = current_user.stables.create(params["stable"])
-  if @stable.saved?
+  @stall = current_user.stalls.create(params["stall"])
+  if @stall.saved?
     redirect "/"
   else
-    erb :new_stable
+    erb :new_stall
+  end
+end
+
+get "/rental_requests/new" do
+  ensure_logged_in!
+  @rental_request = current_user.created_rental_requests.new
+  erb :new_rental_request
+end
+
+post "/rental_requests" do
+  ensure_logged_in!
+  @rental_request = current_user.created_rental_requests.create(params["rental_request"])
+  if rental_request.saved?
+    redirect "/"
+  else
+    erb :new_rental_request
   end
 end
 
@@ -84,6 +100,3 @@ delete "/session" do
     session.delete(:current_user)
     redirect "/"
 end
-
-
-

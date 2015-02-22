@@ -1,0 +1,19 @@
+<h2>Add a Rental Request</h2>
+<form method="POST" action="/rental_requests">
+
+  Display Stall Name you're requesting
+  hidden inputs for the `Stall` details
+  <br>
+  Display User NAme doing the requesting
+  hidden input for `User` details
+  <br>
+  Display "place pending request" maybe...
+  hidden input for "status" => pending or approved or denied
+  <br>
+  <label>Rental Date:
+    <input type="date" name="rental_request[rental_date]" value="<%= @rental_request.rental_date %>"/></label>
+      <%= erb :_error, {:locals => { :model => @rental_request, :field_name => :rental_date } } %>
+
+  <button>Add Rental Request</button>
+
+</form>

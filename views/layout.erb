@@ -11,7 +11,8 @@
   </header>
   <nav>
     <% if logged_in? %>
-      <p><a href="/stables/new">Add Stable</a>
+      <p><a href="/stalls/new">Add Stall</a>
+      <p><a href="/rental_requests/new">Add a Rental Request</a>
         <form method="POST" action="/session">
           <input type="hidden" name="_method" value="DELETE" />
           <button>Log out</button>
