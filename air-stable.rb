@@ -57,5 +57,10 @@ post "/session" do
     end
 end
 
+delete "/session" do
+    session.delete(:current_user)
+    redirect "/"
+end
+
 
 

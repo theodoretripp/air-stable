@@ -8,12 +8,12 @@ This is my readme. More of a scratch pad for informal todo list.
 :heavy check: 2/21 Registering logs you in
 :heavy check: 2/22 Add a base line of security for sessions
 :heavy check: 2/22 Greet logged in users by name
-:heavy check: 2/22
-:heavy check: 2/22
+:heavy check: 2/22 Make sessions routes singular
+:heavy check: 2/22 User may log out
 
 ## Functional Requirements
 
-1. Guest may register as a `User`
+
 1. Guest may log in
 1. `User` may create a Stall
 1. `User` may see a list of available `Stall`s
@@ -25,4 +25,5 @@ This is my readme. More of a scratch pad for informal todo list.
 1. `RentalRequest`s requester may see denied `RentalRequest`s
 1. `Stall` renter may see allowed `RentalRequest`s
 
-
+### DONE !
+1. Guest may register as a `User`
