@@ -1,0 +1,15 @@
+<h2>Add a Stable</h2>
+<form method="POST" action="/stables">
+
+  <label>Name:
+    <input type="text" name="stable[name]" value="<%= @stable.name %>"/></label>
+      <%= erb :_error, {:locals => { :model => @stable, :field_name => :name } } %>
+
+  <label>Address:
+    <input type="text" name="stable[address]" value="<%= @stable.address %>"/></label>
+      <%= erb :_error, {:locals => { :model => @stable, :field_name => :address } } %>
+
+
+  <button>Add Restaurant</button>
+
+</form>

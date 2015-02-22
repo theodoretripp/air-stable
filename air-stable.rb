@@ -21,6 +21,7 @@ helpers do
 end
 
 get "/" do
+  @stables = Stable.all
   erb :home
 end
 
@@ -37,6 +38,20 @@ post "/users" do
     else
         erb :new_user
     end
+end
+
+get "/stables/new" do
+  @stable = current_user.stables.new
+  erb :new_stable
+end
+
+post "/stables" do
+  @stable = current_user.stables.create(params["stable"])
+  if @stable.saved?
+    redirect "/"
+  else
+    erb :new_stable
+  end
 end
 
 get "/session/new" do
