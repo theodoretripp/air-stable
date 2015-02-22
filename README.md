@@ -85,3 +85,11 @@ cp .env.example .env
 ???rerun -c rackup (not sure if this will work on cloud9)
 rerun -c "ruby air-stable.rb -o $IP -p $PORT" (this is works on cloud9)
 Open it in your browser
+
+## Deploying The Software
+
+1. Install Heroku Tool belt https://devcenter.heroku.com/articles/quickstart#step-2-install-the-heroku-toolbelt)
+2. heroku createheroku config:set SESSION_SECRET=$ruby -r 'securereandom' -e 'puts SecureRandom.hex(256)')
+This sets a long random string the the app session secret
+3. git push heroku
+4. heroku open
