@@ -5,19 +5,25 @@ require_relative 'models'
 
 
 helpers do
-    def current_user
-        @current_user ||= User.get(session[:current_user])
-    end
+  def current_user
+      @current_user ||= User.get(session[:current_user])
+  end
 
-    def login(user)
-        @current_user = user
-        session[:current_user] = user.id
-        redirect "/"
-    end
+  def login(user)
+      @current_user = user
+      session[:current_user] = user.id
+      redirect "/"
+  end
 
-    def logged_in?
-        !session[:current_user].nil?
+  def logged_in?
+      !session[:current_user].nil?
+  end
+
+  def ensure_logged_in!
+    unless logged_in?
+      halt 403, "You must be logged in to do that!"
     end
+  end
 end
 
 get "/" do
@@ -41,11 +47,13 @@ post "/users" do
 end
 
 get "/stables/new" do
+  ensure_logged_in!
   @stable = current_user.stables.new
   erb :new_stable
 end
 
 post "/stables" do
+  ensure_logged_in!
   @stable = current_user.stables.create(params["stable"])
   if @stable.saved?
     redirect "/"

@@ -10,13 +10,20 @@ This is my readme. More of a scratch pad for informal todo list.
 :heavy check: 2/22 Greet logged in users by name
 :heavy check: 2/22 Make sessions routes singular
 :heavy check: 2/22 User may log out
+:heavy check: 2/22 User may add a restaurant
+:heavy check: 2/22 Prevent guests from creating restaurants
+:heavy check: 2/22
+:heavy check: 2/22
+:heavy check: 2/22
+:heavy check: 2/22
+:heavy check: 2/22
 
 ## Functional Requirements
 
 
 1. Guest may log in
-1. `User` may create a Stall
-1. `User` may see a list of available `Stall`s
+
+
 1. `User` may create a pending `RentalRequest` for a `Stall`
 1. `Stall` owner may see pending `RentalRequest`s
 1. `RentalRequest`s requester may see pending `RentalRequest`s
@@ -27,3 +34,5 @@ This is my readme. More of a scratch pad for informal todo list.
 
 ### DONE !
 1. Guest may register as a `User`
+1. `User` may create a Stall
+1. `User` may see a list of available `Stall`s
