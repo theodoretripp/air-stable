@@ -6,10 +6,10 @@ This is my readme. More of a scratch pad for informal todo list.
 :heavy check: 2/21 Make form fields proceed down the page, instead of across it.
 :heavy check: 2/21 Allow Users to log in
 :heavy check: 2/21 Registering logs you in
-:heavy check: 2/21
-:heavy check: 2/21
-:heavy check: 2/21
-:heavy check: 2/21
+:heavy check: 2/22 Add a base line of security for sessions
+:heavy check: 2/22 Greet logged in users by name
+:heavy check: 2/22
+:heavy check: 2/22
 
 ## Functional Requirements
 

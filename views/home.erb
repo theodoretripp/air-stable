@@ -1,6 +1,6 @@
-<p>Welcome!</p>
-
-<% unless logged_in? %>
+<% if logged_in? %>
+  <p>Welcome, <%= current_user.name %>!</p>
+<% else %>
   <p><a href="/users/new">Sign up for an account!</a></p>
   <p>Or <a href="/sessions/new">Log in!</a></p>
 <% end %>
