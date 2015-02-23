@@ -63,15 +63,14 @@ post "/stalls" do
 end
 
 get "/rental_requests/new" do
-  ensure_logged_in!
-  @rental_request = current_user.created_rental_requests.new
+  @rental_request = Rental_Request.new
   erb :new_rental_request
 end
 
 post "/rental_requests" do
   ensure_logged_in!
   @rental_request = current_user.created_rental_requests.create(params["rental_request"])
-  if rental_request.saved?
+  if @rental_request.saved?
     redirect "/"
   else
     erb :new_rental_request
