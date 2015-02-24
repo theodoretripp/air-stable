@@ -64,6 +64,7 @@ post "/stalls" do
   ensure_logged_in!
   @stall = current_user.stalls.create(params["stall"])
   if @stall.saved?
+    @stall.refresh_geolocation!
     redirect "/"
   else
     erb :new_stall

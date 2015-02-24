@@ -1,4 +1,5 @@
 require 'data_mapper'
+require 'graticule'
 require 'bcrypt'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
@@ -11,7 +12,7 @@ class User
   property :email, String,  { :required => true,
                               :unique => true,
                               :format => :email_address }
-  property :password, Text
+  property :password, String, { :length => 255 }
 
   has n, :stalls, { :child_key => [:creator_id] }
   has n, :created_rentalrequests, "RentalRequest",
@@ -32,6 +33,8 @@ class Stall
   property :id, Serial
   property :name, String, { :required => true }
   property :address, Text, { :required => true}
+  property :latitude, Float
+  property :longitude, Float
 
   belongs_to :creator, 'User'
 
@@ -48,7 +51,20 @@ class Stall
     all(:address.like => "%#{query}%")
   end
 
+  def refresh_geolocation!
+    location = geocoder.locate(address)
+    self.latitude = location.latitude
+    self.longitude = location.longitude
+    self.save
+  end
 
+  def location
+    @location ||= Graticule::Location.new({ latitude: self.latitude, longitude: self.longitude })
+  end
+
+  def geocoder
+    @@geocoder ||= Graticule.service(:google).new ENV['GOOGLE_GEOCODER_API_KEY']
+  end
 end
 
 class StallsRentalrequest #Wierd case thing going on here - NameError if camelcase.

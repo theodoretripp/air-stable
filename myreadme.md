@@ -39,7 +39,7 @@ This is my scratch pad for informal todo list.
 [x] 2/23 Add search capability QUESTION - on home.erb with new search I don't
          see how all stalls are displayed? @stalls = the query result right? Not Stalls.all.
 
-[ ] 2/2
+[ ] 2/23 Retrieve and store latitude and longitude w/restaurant
 
 [ ] 2/2
 
@@ -75,5 +75,8 @@ This is my scratch pad for informal todo list.
 2. 1. Guest may log in
 1. `User` may create a Stall
 1. `User` may see a list of available `Stall`s
-2. 'User' may tag a stall with a rentalrequest (still need to take out intermediate
-    step.
+1. `User` may tag a stall with a rentalrequest (still need to take out intermediate
+    step.)
+1. `User` may search stalls, address, request.
+
+

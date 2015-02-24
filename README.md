@@ -93,3 +93,12 @@ Open it in your browser
 This sets a long random string the the app session secret
 3. git push heroku
 4. heroku open
+
+### Obtain a Google Maps API Key
+Google restricts your request to 2500 per day. To ger you own key:
+
+Create a project at https://console.developers.google.com/project
+Follow instructions to enable API access:
+https://developers.google.com/maps/documentation/geocoding/#api\_key
+Get your "Public API Access" API Key from the "Apis & Auth" -> "Credentials" page
+Update `GOOGLE_GEOCODER_API_KEY` in `.env` or via `heroku config:set`
