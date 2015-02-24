@@ -27,7 +27,12 @@ helpers do
 end
 
 get "/" do
-  @stalls = Stall.search(params["query"])
+  search_options = {}
+  if params["location"] && !params["location"].empty?
+    search_options[:near] = params["locations"]
+  end
+
+  @stalls = Stall.search(params["query"], search_options)
   erb :home
 end
 

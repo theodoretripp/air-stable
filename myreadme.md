@@ -36,12 +36,20 @@ This is my scratch pad for informal todo list.
          the name isn't like a datamapper type underscore
     [x]  yes this worked - NameError resolved. found other typo also.
 
-[x] 2/23 Add search capability QUESTION - on home.erb with new search I don't
-         see how all stalls are displayed? @stalls = the query result right? Not Stalls.all.
+[x] 2/23 Add search capability
+    QUESTION - on home.erb with new search I don't see how all stalls are
+    displayed? @stalls = the query result right? Not Stalls.all.
 
-[ ] 2/23 Retrieve and store latitude and longitude w/restaurant
+[x] 2/23 Retrieve and store latitude and longitude w/restaurant
 
-[ ] 2/2
+[x] 2/23 User may search based upon location
+    QUESTION seems like the search for name and location together are broken -
+    if you type like name you get all results not filtered by location
+    Can't search by location only...
+
+[ ] Try running on Heroku
+[ ] Start Diverging from can-i-eat-here example
+[ ] Check other sprint examples
 
 ## Note
 
@@ -72,11 +80,12 @@ This is my scratch pad for informal todo list.
 ## DONE
 
 1. Guest may register as a `User`
-2. 1. Guest may log in
+1. Guest may log in
 1. `User` may create a Stall
 1. `User` may see a list of available `Stall`s
 1. `User` may tag a stall with a rentalrequest (still need to take out intermediate
     step.)
 1. `User` may search stalls, address, request.
+1. `User` may sear stalls by location
 
 

@@ -12,22 +12,16 @@ class User
   property :email, String,  { :required => true,
                               :unique => true,
                               :format => :email_address }
-  property :password, String, { :length => 255 }
+  property :password, BCryptHash
 
   has n, :stalls, { :child_key => [:creator_id] }
   has n, :created_rentalrequests, "RentalRequest",
   { :child_key => [:creator_id] }
 
-  def password=(password)
-    self.attribute_set(:password, BCrypt::Password.create(password))
-  end
-
-  def password
-    BCrypt::Password.new(self.attribute_get(:password))
-  end
 end
 
 class Stall
+  SEARCH_RADIUS = 10
   include DataMapper::Resource
 
   property :id, Serial
@@ -45,10 +39,22 @@ class Stall
     self.stalls_rentalrequests.first_or_create(:supported_rentalrequest => rentalrequest)
   end
 
-  def self.search(query)
-    all(:name.like => "%#{query}%") |
+  def self.search(query, options={})
+    stalls = all(:name.like => "%#{query}%") |
     all(supported_rentalrequests.name.like => "%#{query}%") |
     all(:address.like => "%#{query}%")
+
+    return stalls unless options[:near]
+
+    location = geocoder.locate(options[:near])
+
+    stalls.select do |stall|
+      stall.near?(location)
+    end
+  end
+
+  def near?(other_location)
+    self.location.distance_to(other_location) <= SEARCH_RADIUS
   end
 
   def refresh_geolocation!
@@ -63,6 +69,10 @@ class Stall
   end
 
   def geocoder
+    self.class.geocoder
+  end
+
+  def self.geocoder
     @@geocoder ||= Graticule.service(:google).new ENV['GOOGLE_GEOCODER_API_KEY']
   end
 end
