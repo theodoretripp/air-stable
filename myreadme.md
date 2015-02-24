@@ -25,15 +25,23 @@ This is my scratch pad for informal todo list.
 [x] 2/22 Prevent guests from creating restaurants
 
 [x] 2/22 User may add a dietary restriction - tried to start diverging from example
-         It's not going to well.  May just stick with example to the end and then...?
+         It's not going to well.  Sticking with example to the end and then...?
 
-[ ] 2/22
+[x] 2/23 User may add a supported restriction to a restaurant - this is where I was tring to go on my own yesterday.
+         Once I finish the example then I can remove the user ability to add unattached request
+         Getting const error from Class Stall in models.rb.  I think I need to
+         rename the Rental_Request without the underscore to RentalRequest.
+         I should be able to change any occurence of rental_request to rentalrequest
+         because it's never been anything but a style choice - the underscore in
+         the name isn't like a datamapper type underscore
+    [x]  yes this worked - NameError resolved. found other typo also.
 
-[ ] 2/22
+[x] 2/23 Add search capability QUESTION - on home.erb with new search I don't
+         see how all stalls are displayed? @stalls = the query result right? Not Stalls.all.
 
-[ ] 2/22
+[ ] 2/2
 
-[ ] 2/22
+[ ] 2/2
 
 ## Note
 
@@ -67,3 +75,5 @@ This is my scratch pad for informal todo list.
 2. 1. Guest may log in
 1. `User` may create a Stall
 1. `User` may see a list of available `Stall`s
+2. 'User' may tag a stall with a rentalrequest (still need to take out intermediate
+    step.

@@ -6,13 +6,13 @@
 </head>
 <body>
   <header>
-    <h1>Air Stable</h1>
+    <h1><a href="/">Air Stable</a></h1>
     <p>Find Stable space to rent. Offer your space to renters.</p>
   </header>
   <nav>
     <% if logged_in? %>
       <p><a href="/stalls/new">Add Stall</a>
-      <p><a href="/rental_requests/new">Add a Rental Request</a>
+      <p><a href="/rentalrequests/new">Add a Rental Request</a>
         <form method="POST" action="/session">
           <input type="hidden" name="_method" value="DELETE" />
           <button>Log out</button>

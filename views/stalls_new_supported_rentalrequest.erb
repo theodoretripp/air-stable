@@ -1,0 +1,16 @@
+<h2>Add a Supported Rental Request to <%= @stall.name %></h2>
+<form method="POST" action="/stalls/<%= @stall.id %>/supported_rentalrequests">
+  <select name="supported_rentalrequest[id]">
+    <% @available_rentalrequests.each do |rentalrequest| %>
+      <option value="<%= rentalrequest.id %>"><%= rentalrequest.name %></option>
+    <% end %>
+  </select>
+  <button>Add Rental Request</button>
+</form>
+<p>Not seeing what you want? <a href="/rentalrequests/new">Create a New Rental Request</a></p>
+<h3>Current Rental Requests</h3>
+<ul>
+  <% @stall.supported_rentalrequests.each do |rentalrequest| %>
+    <li><%= rentalrequest.name %></li>
+  <% end %>
+</ul>

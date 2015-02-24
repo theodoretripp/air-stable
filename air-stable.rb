@@ -27,9 +27,13 @@ helpers do
 end
 
 get "/" do
-  @stalls = Stall.all
+  @stalls = Stall.search(params["query"])
   erb :home
 end
+
+#
+# USERS
+#
 
 get "/users/new" do
     @user = User.new
@@ -45,6 +49,10 @@ post "/users" do
         erb :new_user
     end
 end
+
+#
+# STALLS
+#
 
 get "/stalls/new" do
   ensure_logged_in!
@@ -62,20 +70,45 @@ post "/stalls" do
   end
 end
 
-get "/rental_requests/new" do
-  @rental_request = Rental_Request.new
-  erb :new_rental_request
+get "/stalls/:stall_id/supported_rentalrequests/new" do
+  ensure_logged_in!
+  @stall = Stall.get(params["stall_id"])
+  @available_rentalrequests = RentalRequest.all
+  erb :stalls_new_supported_rentalrequest
 end
 
-post "/rental_requests" do
+post "/stalls/:stall_id/supported_rentalrequests" do
   ensure_logged_in!
-  @rental_request = current_user.created_rental_requests.create(params["rental_request"])
-  if @rental_request.saved?
+  stall = Stall.get(params["stall_id"])
+  rentalrequest = RentalRequest.get(params["supported_rentalrequest"]["id"])
+
+  stall.add_supported_rentalrequest(rentalrequest)
+
+  redirect "/"
+end
+
+#
+# RENTAL REQUESTS
+#
+
+get "/rentalrequests/new" do
+  @rentalrequest = RentalRequest.new
+  erb :new_rentalrequest
+end
+
+post "/rentalrequests" do
+  ensure_logged_in!
+  @rentalrequest = current_user.created_rentalrequests.create(params["rentalrequest"])
+  if @rentalrequest.saved?
     redirect "/"
   else
-    erb :new_rental_request
+    erb :new_rentalrequest
   end
 end
+
+#
+# SESSION
+#
 
 get "/session/new" do
     @login_attempt = User.new

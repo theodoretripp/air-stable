@@ -1,5 +1,5 @@
 <h2>Add a Rental Request</h2>
-<form method="POST" action="/rental_requests">
+<form method="POST" action="/rentalrequests">
 
   Stall Name you're requesting hidden input for `Stall` details
   <br>
@@ -10,8 +10,8 @@
   Choose Rental Date input type date
   <br>
   <label>Stall Name:
-    <input type="text" name="rental_request[name]" value="<%= @rental_request.name %>"/></label>
-      <%= erb :_error, {:locals => { :model => @rental_request, :field_name => :name } } %>
+    <input type="text" name="rentalrequest[name]" value="<%= @rentalrequest.name %>"/></label>
+      <%= erb :_error, {:locals => { :model => @rentalrequest, :field_name => :name } } %>
 
   <button>Add Rental Request</button>
 
