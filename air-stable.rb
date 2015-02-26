@@ -76,6 +76,22 @@ post "/stalls" do
   end
 end
 
+get "/stall/:stall_id" do
+  @stall = Stall.get(params[:stall_id])
+  erb :show_stall
+end
+
+post "/stall/:stall_id/reserve" do
+ RentalRequest.create( :date => params[:rental_date],
+                       :status => params[:status],
+                       :stall_id => params[:stall_id],
+                       :creator_id => current_user.id
+                       )
+ redirect "/"
+end
+
+
+
 get "/stalls/:stall_id/supported_rentalrequests/new" do
   ensure_logged_in!
   @stall = Stall.get(params["stall_id"])

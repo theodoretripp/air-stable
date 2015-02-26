@@ -30,8 +30,8 @@ This is my scratch pad for informal todo list.
 [x] 2/23 User may add a supported restriction to a restaurant - this is where I was tring to go on my own yesterday.
          Once I finish the example then I can remove the user ability to add unattached request
          Getting const error from Class Stall in models.rb.  I think I need to
-         rename the Rental_Request without the underscore to RentalRequest.
-         I should be able to change any occurence of rental_request to rentalrequest
+         rename the RentalRequest without the underscore to RentalRequest.
+         I should be able to change any occurence of RentalRequest to rentalrequest
          because it's never been anything but a style choice - the underscore in
          the name isn't like a datamapper type underscore
     [x]  yes this worked - NameError resolved. found other typo also.
@@ -49,7 +49,7 @@ This is my scratch pad for informal todo list.
 
 [ ] Try running on Heroku
 [ ] Start Diverging from can-i-eat-here example
-[ ] Check other sprint examples
+
 
 ## Note
 
@@ -61,10 +61,13 @@ This is my scratch pad for informal todo list.
 
 [ ] `User` may create a pending `RentalRequest` for a `Stall`
     view
-    [x] add to `Rental_Request` class "status" property type string (pending or approved or denied)
-    [x] add to `Rental_Request` class "rental_date" property type date
+    [ ] associate `RentalRequest` with a stall on creation.
+    Can I use Stall as a model, it belongs to user on creation?
+
+    [ ] add to `RentalRequest` class "status" property type string (pending or approved or denied)
+    [ ] add to `RentalRequest` class "rental_date" property type date
     [ ] change stable list to include link (Rent this?)
-    [ ] new_rental_request.erb will have form with hidden inputs for the `Stall`
+    [ ] new_RentalRequest.erb will have form with hidden inputs for the `Stall`
         details (similar to past examples) and `User` details
     [ ] hidden input for "status" => pending or approved or denied
     [ ] new input for open comment (worry about date, price later)

@@ -1,5 +1,5 @@
 require 'data_mapper'
-require 'graticule'
+# require 'graticule'
 require 'bcrypt'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
@@ -15,8 +15,7 @@ class User
   property :password, BCryptHash
 
   has n, :stalls, { :child_key => [:creator_id] }
-  has n, :created_rentalrequests, "RentalRequest",
-  { :child_key => [:creator_id] }
+  has n, :rental_requests,  { :child_key => [:creator_id] }
 
 end
 
@@ -26,15 +25,18 @@ class Stall
 
   property :id, Serial
   property :name, String, { :required => true }
-  property :address, Text, { :required => true}
+  property :address, Text, { :required => true }
   property :latitude, Float
   property :longitude, Float
 
   belongs_to :creator, 'User'
 
-  has n, :stalls_rentalrequests
-  has n, :supported_rentalrequests, "RentalRequest", { :through => :stalls_rentalrequests }
+  has n, :rental_requests
 
+  # has n, :stalls_rentalrequests
+  # has n, :supported_rentalrequests, "RentalRequest", { :through => :stalls_rentalrequests }
+
+=begin
   def add_supported_rentalrequest(rentalrequest)
     self.stalls_rentalrequests.first_or_create(:supported_rentalrequest => rentalrequest)
   end
@@ -75,9 +77,12 @@ class Stall
   def self.geocoder
     @@geocoder ||= Graticule.service(:google).new ENV['GOOGLE_GEOCODER_API_KEY']
   end
+=end
+
 end
 
-class StallsRentalrequest #Wierd case thing going on here - NameError if camelcase.
+=begin
+class StallsRentalRequest #Wierd case thing going on here - NameError if camelcase.
   include DataMapper::Resource
 
   property :id, Serial
@@ -85,17 +90,19 @@ class StallsRentalrequest #Wierd case thing going on here - NameError if camelca
   belongs_to :supported_rentalrequest, "RentalRequest"
   belongs_to :stall
 end
-
+=end
 
 class RentalRequest
   include DataMapper::Resource
 
   property :id, Serial
   property :name, String, { :required => true }
-  # property :rental_date, Date, { :required => true }
-  # property :status, String, :default => "pending"
+  property :rental_date, Date #, { :required => true }
+  property :status, String
 
   belongs_to :creator, 'User'
+  belongs_to :stall
+
 end
 
 DataMapper.finalize

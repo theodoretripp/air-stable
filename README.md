@@ -1,4 +1,4 @@
-# AirStable - AirBnB For Horses
+# AirStable - AirBnB For Horses 
 
 You have a horse. You want to travel with your horse; but all the commercial
 stables are absurdly expensive. Whatever do you do?!
@@ -8,10 +8,10 @@ stalls to horses on the go!
 
 ## Functional Requirements
 
-1. Guest may register as a `User`
-1. Guest may log in
-1. `User` may create a Stall
-1. `User` may see a list of available `Stall`s
+1. :heavy_check_mark: Guest may register as a `User`
+1. :heavy_check_mark: Guest may log in
+1. :heavy_check_mark: `User` may create a Stall
+1. :heavy_check_mark: `User` may see a list of available `Stall`s
 1. `User` may create a pending `RentalRequest` for a `Stall`
 1. `Stall` owner may see pending `RentalRequest`s
 1. `RentalRequest`s requester may see pending `RentalRequest`s
