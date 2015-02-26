@@ -1,0 +1,21 @@
+<h2><%= stall.name %></h2>
+<p><%= stall.address %></p>
+
+<p>
+  <h3>If you'd like to request a reservation just complete the form below.</h3>
+</p>
+
+<form method="POST" action="/stall/<%= @stall.id %>/reserve">
+  <br>
+  <label for="rental_date">Reservation Date:
+    <input type="date" id="rental_date" name="rental_date"></label>
+  <br>
+  <label>Stall Name:
+    <input type="text" name="rentalrequest[name]"
+      value="<%= @rentalrequest.name %>"/></label>
+      <%= erb :_error, {:locals => { :model => @rentalrequest, :field_name => :name } } %>
+  <input type="hidden" id="status" name="status" value="pending">
+
+  <button>Add Rental Request</button>
+
+</form>

@@ -1,0 +1,18 @@
+<h2>Add a Rental Request</h2>
+<form method="POST" action="/rentalrequests">
+
+  Stall Name you're requesting hidden input for `Stall` details
+  <br>
+  User Name doing the requesting hidden input for `User` details
+  <br>
+  Status of Request hidden input for "status" => pending
+  <br>
+  Choose Rental Date input type date
+  <br>
+  <label>Stall Name:
+    <input type="text" name="rentalrequest[name]" value="<%= @rentalrequest.name %>"/></label>
+      <%= erb :_error, {:locals => { :model => @rentalrequest, :field_name => :name } } %>
+
+  <button>Add Rental Request</button>
+
+</form>

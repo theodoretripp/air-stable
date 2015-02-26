@@ -1,6 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (4.2.0)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
     addressable (2.3.7)
     bcrypt (3.1.10)
     bcrypt-ruby (3.1.5)
@@ -63,18 +69,31 @@ GEM
     dotenv (1.0.2)
     fastercsv (1.5.5)
     ffi (1.9.6)
+    graticule (2.5.0)
+      activesupport
+      i18n
+      json
+      nokogiri-happymapper (>= 0.5.9)
     hitimes (1.2.2)
+    i18n (0.7.0)
     json (1.8.2)
     json_pure (1.8.2)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    mini_portile (0.6.2)
+    minitest (5.5.1)
     multi_json (1.10.1)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    nokogiri-happymapper (0.5.9)
+      nokogiri (~> 1.5)
     pg (0.18.1)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
+    rake (10.4.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -86,9 +105,12 @@ GEM
       tilt (~> 1.3, >= 1.3.4)
     sqlite3 (1.3.10)
     stringex (1.5.1)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
     uuidtools (2.1.5)
 
 PLATFORMS
@@ -100,7 +122,9 @@ DEPENDENCIES
   dm-postgres-adapter
   dm-sqlite-adapter
   dotenv
+  graticule
   pg
+  rake
   rerun
   sinatra
   sqlite3

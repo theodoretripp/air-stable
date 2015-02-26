@@ -5,9 +5,23 @@
   <p>Or <a href="/session/new">Log in!</a></p>
 <% end %>
 
-<% @stables.each do |stable| %>
-  <article class="stable">
-    <h3><%= stable.name %></h3>
-    <p><%= stable.address %></p>
+<form method="GET" action="/">
+  <label>I'm looking for...
+    <input type="search" name="query" value="<% params["query"] %>" /></label>
+  <label>Near (leave blank for anywhere):
+    <input type="test" name="location" value="<% params["location"] %>" /></label>
+  <button>Search</button>
+</form>
+
+<% @stalls.each do |stall| %>
+  <article class="stall">
+    <h3><%= stall.name %></h3>
+    <p><%= stall.address %></p>
+    <ul>
+      <% stall.supported_rentalrequests.each do |rentalrequest| %>
+        <li><%= rentalrequest.name %></li>
+      <% end %>
+      <li><a href="/stalls/<%= stall.id %>/supported_rentalrequests/new">Add a Rental Request to this Stall</a></li>
+    </ul>
   </article>
 <% end %>

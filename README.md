@@ -1,4 +1,4 @@
-# AirStable - AirBnB For Horses
+# AirStable - AirBnB For Horses 
 
 You have a horse. You want to travel with your horse; but all the commercial
 stables are absurdly expensive. Whatever do you do?!
@@ -8,10 +8,10 @@ stalls to horses on the go!
 
 ## Functional Requirements
 
-1. Guest may register as a `User`
-1. Guest may log in
-1. `User` may create a Stall
-1. `User` may see a list of available `Stall`s
+1. :heavy_check_mark: Guest may register as a `User`
+1. :heavy_check_mark: Guest may log in
+1. :heavy_check_mark: `User` may create a Stall
+1. :heavy_check_mark: `User` may see a list of available `Stall`s
 1. `User` may create a pending `RentalRequest` for a `Stall`
 1. `Stall` owner may see pending `RentalRequest`s
 1. `RentalRequest`s requester may see pending `RentalRequest`s
@@ -93,3 +93,12 @@ Open it in your browser
 This sets a long random string the the app session secret
 3. git push heroku
 4. heroku open
+
+### Obtain a Google Maps API Key
+Google restricts your request to 2500 per day. To ger you own key:
+
+Create a project at https://console.developers.google.com/project
+Follow instructions to enable API access:
+https://developers.google.com/maps/documentation/geocoding/#api\_key
+Get your "Public API Access" API Key from the "Apis & Auth" -> "Credentials" page
+Update `GOOGLE_GEOCODER_API_KEY` in `.env` or via `heroku config:set`

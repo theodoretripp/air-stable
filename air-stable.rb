@@ -5,25 +5,40 @@ require_relative 'models'
 
 
 helpers do
-    def current_user
-        @current_user ||= User.get(session[:current_user])
-    end
+  def current_user
+      @current_user ||= User.get(session[:current_user])
+  end
 
-    def login(user)
-        @current_user = user
-        session[:current_user] = user.id
-        redirect "/"
-    end
+  def login(user)
+      @current_user = user
+      session[:current_user] = user.id
+      redirect "/"
+  end
 
-    def logged_in?
-        !session[:current_user].nil?
+  def logged_in?
+      !session[:current_user].nil?
+  end
+
+  def ensure_logged_in!
+    unless logged_in?
+      halt 403, "You must be logged in to do that!"
     end
+  end
 end
 
 get "/" do
-  @stables = Stable.all
+  search_options = {}
+  if params["location"] && !params["location"].empty?
+    search_options[:near] = params["locations"]
+  end
+
+  @stalls = Stall.search(params["query"], search_options)
   erb :home
 end
+
+#
+# USERS
+#
 
 get "/users/new" do
     @user = User.new
@@ -40,19 +55,82 @@ post "/users" do
     end
 end
 
-get "/stables/new" do
-  @stable = current_user.stables.new
-  erb :new_stable
+#
+# STALLS
+#
+
+get "/stalls/new" do
+  ensure_logged_in!
+  @stall = current_user.stalls.new
+  erb :new_stall
 end
 
-post "/stables" do
-  @stable = current_user.stables.create(params["stable"])
-  if @stable.saved?
+post "/stalls" do
+  ensure_logged_in!
+  @stall = current_user.stalls.create(params["stall"])
+  if @stall.saved?
+    @stall.refresh_geolocation!
     redirect "/"
   else
-    erb :new_stable
+    erb :new_stall
   end
 end
+
+get "/stall/:stall_id" do
+  @stall = Stall.get(params[:stall_id])
+  erb :show_stall
+end
+
+post "/stall/:stall_id/reserve" do
+ RentalRequest.create( :date => params[:rental_date],
+                       :status => params[:status],
+                       :stall_id => params[:stall_id],
+                       :creator_id => current_user.id
+                       )
+ redirect "/"
+end
+
+
+
+get "/stalls/:stall_id/supported_rentalrequests/new" do
+  ensure_logged_in!
+  @stall = Stall.get(params["stall_id"])
+  @available_rentalrequests = RentalRequest.all
+  erb :stalls_new_supported_rentalrequest
+end
+
+post "/stalls/:stall_id/supported_rentalrequests" do
+  ensure_logged_in!
+  stall = Stall.get(params["stall_id"])
+  rentalrequest = RentalRequest.get(params["supported_rentalrequest"]["id"])
+
+  stall.add_supported_rentalrequest(rentalrequest)
+
+  redirect "/"
+end
+
+#
+# RENTAL REQUESTS
+#
+
+get "/rentalrequests/new" do
+  @rentalrequest = RentalRequest.new
+  erb :new_rentalrequest
+end
+
+post "/rentalrequests" do
+  ensure_logged_in!
+  @rentalrequest = current_user.created_rentalrequests.create(params["rentalrequest"])
+  if @rentalrequest.saved?
+    redirect "/"
+  else
+    erb :new_rentalrequest
+  end
+end
+
+#
+# SESSION
+#
 
 get "/session/new" do
     @login_attempt = User.new
@@ -76,6 +154,3 @@ delete "/session" do
     session.delete(:current_user)
     redirect "/"
 end
-
-
-
